@@ -16,12 +16,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/article/:id", (req, res) => {
-  const id = Number(req.params.id);
-  Article.find({}, (err, data) => {
+  const id = req.params.id;
+  Article.find({ _id: id }, (err, data) => {
     if (err) {
       res.json(err);
     } else {
-      res.json(data);
+      res.json(...data);
     }
   });
 });
@@ -40,13 +40,10 @@ app.post("/api/article", (req, res) => {
     author: article.author,
     comments: [],
   });
-  newArticle.save().then(savedArticle => {
+  newArticle.save().then((savedArticle) => {
     res.json(savedArticle);
-  }).catch(err => {
-    res.json(err);
-  }
+  });
 });
-
 
 app.listen(process.env.PORT || 5001, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
