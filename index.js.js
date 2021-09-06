@@ -1,3 +1,4 @@
+require("dotenv").config();
 require("./mongo");
 const express = require("express");
 const cors = require("cors");
@@ -34,7 +35,7 @@ app.post("/api/article", (req, res) => {
   console.log(article);
   res.json("article created");
 });
-
-app.listen(PORT || 5001, () => {
-  console.log(`Server is running on port ${PORT}`);
+console.log("ENV  ", process.env.PORT);
+app.listen(process.env.PORT || 5001, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
