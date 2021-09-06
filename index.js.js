@@ -1,5 +1,14 @@
 const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const { username, password } = require("./crd");
+const conectionString = `mongodb+srv://${username}:${password}@maidan-clu.mfkrx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+
 const app = express();
+
+app.use(cors());
+app.use(express.json());
+
 const PORT = 5000;
 
 app.get("/", (req, res) => {
@@ -13,6 +22,12 @@ app.get("/api/article/:id", (req, res) => {
 
 app.get("/api/categories", (req, res) => {
   res.json("categories");
+});
+
+app.post("/api/article", (req, res) => {
+  const article = req.body;
+  console.log(article);
+  res.json("article created");
 });
 
 app.listen(PORT || 5001, () => {
