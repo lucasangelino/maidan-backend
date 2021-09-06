@@ -1,8 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose");
-const { username, password } = require("./crd");
-const conectionString = `mongodb+srv://${username}:${password}@maidan-clu.mfkrx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const app = express();
 
