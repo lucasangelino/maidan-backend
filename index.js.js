@@ -32,10 +32,22 @@ app.get("/api/categories", (req, res) => {
 
 app.post("/api/article", (req, res) => {
   const article = req.body;
-  console.log(article);
-  res.json("article created");
+  const newArticle = new Article({
+    title: article.title,
+    date: article.date,
+    content: article.content,
+    tags: article.tags,
+    author: article.author,
+    comments: [],
+  });
+  newArticle.save().then(savedArticle => {
+    res.json(savedArticle);
+  }).catch(err => {
+    res.json(err);
+  }
 });
-console.log("ENV  ", process.env.PORT);
+
+
 app.listen(process.env.PORT || 5001, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
