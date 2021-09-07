@@ -17,13 +17,17 @@ app.get("/", (req, res) => {
 
 app.get("/api/article/:id", (req, res) => {
   const id = req.params.id;
-  Article.find({ _id: id }, (err, data) => {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(...data);
-    }
-  });
+  Article.findById(id)
+    .then((article) => {
+      if (article) {
+        return res.json(article);
+      } else {
+        return res.status(404).json({ message: "Article not found" });
+      }
+    })
+    .catch((err) => {
+      return res.status(500).json({ message: err.message });
+    });
 });
 
 app.get("/api/categories", (req, res) => {
@@ -34,7 +38,7 @@ app.post("/api/article", (req, res) => {
   const article = req.body;
   const newArticle = new Article({
     title: article.title,
-    date: article.date,
+    date: new Date(),
     content: article.content,
     tags: article.tags,
     author: article.author,
