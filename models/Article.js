@@ -3,6 +3,7 @@ const { Schema, model } = mongoose;
 
 const articleSchema = new Schema({
   title: String,
+  summary: String,
   date: Date,
   content: String,
   tags: [String],
