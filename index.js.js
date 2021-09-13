@@ -76,7 +76,7 @@ app.post("/api/article", jsonParser, (req, res) => {
     comments: [],
   });
   newArticle.save().then((savedArticle) => {
-    res.json(savedArticle);
+    return res.status(201).json({ code: 201, message: "Article Created" });
   });
 });
 
