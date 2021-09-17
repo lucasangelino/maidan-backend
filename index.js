@@ -24,6 +24,10 @@ app.use(
 );
 
 // Routes
+app.get("/", (req, res) => {
+  res.json("holi");
+});
+
 app.get("/api/articles/latest", (req, res) => {
   console.log("latest");
   Article.find({})
