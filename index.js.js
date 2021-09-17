@@ -84,5 +84,5 @@ app.use(notFound);
 app.use(handleError);
 
 app.listen(process.env.PORT || 5001, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
+  console.log(`Server is running on port ${process.env.PORT || 5001}`);
 });
