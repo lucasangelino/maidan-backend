@@ -56,7 +56,7 @@ app.get("/api/article/:id", (req, res, next) => {
 });
 
 app.get("/api/categories", (req, res) => {
-  res.json("categories");
+  res.json("categorias");
 });
 
 app.post("/api/article", jsonParser, (req, res) => {
